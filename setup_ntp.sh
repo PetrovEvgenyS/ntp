@@ -40,10 +40,10 @@ setup_almalinux() {
 
     magentaprint "Настройка серверов NTP..."
     cat > /etc/chrony.conf <<EOL
-server 0.ru.pool.ntp.org iburst
-server 1.ru.pool.ntp.org iburst
-server 2.ru.pool.ntp.org iburst
-server 3.ru.pool.ntp.org iburst
+server 0.ru.pool.ntp.org iburst minpoll 3 maxpoll 8
+server 1.ru.pool.ntp.org iburst minpoll 3 maxpoll 8
+server 2.ru.pool.ntp.org iburst minpoll 3 maxpoll 8
+server 3.ru.pool.ntp.org iburst minpoll 3 maxpoll 8
 
 # Разрешение доступа для локальной сети (при необходимости настроить)
 allow 10.100.10.0/24
