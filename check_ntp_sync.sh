@@ -2,13 +2,21 @@
 
 # --- Переменные ---
 MAX_OFFSET="300"                    # Максимально допустимое расхождение времени в секундах (5 минут)
-LOG_FILE="/var/log/ntp_fix.log"     # Лог файл
+LOG_FILE="/var/log/ntp_fix.log"     # Путь к лог-файлу
+DEBUG=0                             # Флаг режима отладки
+
+# --- Обработка аргументов ---
+for arg in "$@"; do
+    if [[ "$arg" == "--debug" ]]; then
+        DEBUG=1
+    fi
+done
 
 # --- Функции логирования ---
 log_info()  { echo "$(date): [INFO] $*"   >> "$LOG_FILE"; }
 log_warn()  { echo "$(date): [WARNING] $*" >> "$LOG_FILE"; }
 log_error() { echo "$(date): [ERROR] $*"  >> "$LOG_FILE"; }
-log_debug() { echo "$(date): [DEBUG] $*"  >> "$LOG_FILE"; }
+log_debug() { [[ "$DEBUG" -eq 1 ]] && echo "$(date): [DEBUG] $*" >> "$LOG_FILE"; }
 
 
 # --------------------------------------------------------------------------------------------------------------------
