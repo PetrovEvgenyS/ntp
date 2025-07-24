@@ -96,7 +96,9 @@ allow 10.100.10.0/24
 
 # Пути для хранения дрейфа и статистики
 driftfile /var/lib/chrony/drift
-makestep 1.0 3
+
+# Корректировка времени, если разница времени превышает 300 секунд (5 минут), с возможностью выполнения до 10 (раз) шагов
+makestep 300 10
 
 # Specify file containing keys for NTP authentication.
 keyfile /etc/chrony/chrony.keys
