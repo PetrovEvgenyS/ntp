@@ -54,6 +54,7 @@ fi
 # --- Вычисляем абсолютное значение смещения ---
 ABS_OFFSET=$(echo "$OFFSET" | awk '{if ($1<0) print -$1; else print $1}')
 
+# --- DEBUG ---
 log_debug "ABS_OFFSET=$ABS_OFFSET, MAX_OFFSET=$MAX_OFFSET"
 
 # --- Проверка расхождения времени ---
